@@ -1,0 +1,26 @@
+{
+  "name": "core/api",
+  "description": "Laravel Test Core-Api by Eduardo Trujillo)",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Trujillo",
+      "email": "trujillo910115@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Core\\Api\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "provider": [
+        "Core\\Api\\ApiServiceProvider"
+      ]
+    }
+  }
+}
+
