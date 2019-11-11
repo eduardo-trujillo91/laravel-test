@@ -34,12 +34,6 @@ class ProductsController extends Controller
     {
         $user = User::where('api_token', '=', $request['api_token'])->first();
         if ($user != null) {
-            $validator = $request->validated();
-            if ($validator->fails()) {
-                $errores = $validator->messages();
-                return response()->json(['errors' => array(['code' => 422,
-                    'message' => $errores])], 422);
-            }
             $product = Products::create($request->all());
             return response()->json(['status' => 'ok', 'data' => $product, 200]);
         }
@@ -83,12 +77,6 @@ class ProductsController extends Controller
             if (!$product) {
                 return response()->json(['errors' => array(['code' => 404,
                     'message' => 'No se encuentra ese Producto.'])], 404);
-            }
-            $validator = $request->validated();
-            if ($validator->fails()) {
-                $errores = $validator->messages();
-                return response()->json(['errors' => array(['code' => 422,
-                    'message' => $errores])], 422);
             }
             $product->fill($request->all());
             $product->save();
