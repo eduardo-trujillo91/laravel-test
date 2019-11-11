@@ -35,12 +35,6 @@ class CustomersController extends Controller
     {
         $user = User::where('api_token', '=', $request['api_token'])->first();
         if ($user != null) {
-            $validator = $request->validated();
-            if ($validator->fails()) {
-                $errores = $validator->messages();
-                return response()->json(['errors' => array(['code' => 422,
-                    'message' => $errores])], 422);
-            }
             $customer = Customers::create($request->all());
             return response()->json(['status' => 'ok', 'data' => $customer, 200]);
         }
@@ -84,12 +78,6 @@ class CustomersController extends Controller
             if (!$customer) {
                 return response()->json(['errors' => array(['code' => 404,
                     'message' => 'No se encuentra ese Cliente.'])], 404);
-            }
-            $validator = $request->validated();
-            if ($validator->fails()) {
-                $errores = $validator->messages();
-                return response()->json(['errors' => array(['code' => 422,
-                    'message' => $errores])], 422);
             }
             $customer->fill($request->all());
             $customer->save();
